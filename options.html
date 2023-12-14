@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Chrome Extension</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Spritz</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>My Chrome Extension</h1>
-    <div>
-        <label for="readingSpeed">Reading Speed:</label>
-        <input type="range" id="readingSpeed" name="readingSpeed" min="1" max="10">
+    <div class="container">
+        <img src="icon.png" alt="Spritz Icon" class="icon">
+        <h1>Spritz Settings</h1>
+        <div class="setting">
+            <label for="readingSpeed">Reading Speed:</label>
+            <input type="range" id="readingSpeed" name="readingSpeed" min="1" max="10">
+        </div>
+        <button id="saveSettings" class="save-button">Save Settings</button>
     </div>
-    <div>
-        <label for="otherSetting">Other Setting:</label>
-        <input type="checkbox" id="otherSetting" name="otherSetting">
-    </div>
-    <button id="saveSettings">Save Settings</button>
-    <script src="background.js"></script>
+    <script src="options.js"></script>
 </body>
 </html>

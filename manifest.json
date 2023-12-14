@@ -1,16 +1,15 @@
 {
-    "manifest_version": 2,
-    "name": "SwiftBlink Chrome",
+    "manifest_version": 3,
+    "name": "Spritz Reader",
     "version": "1.0",
-    "description": "A Chrome extension with Spritz-like functionality.",
-    "permissions": ["storage", "activeTab", "contextMenus", "webNavigation", "alarms"],
-    "browser_action": {
-        "default_icon": "icon.png",
+    "description": "Read text quickly using the Spritz method.",
+    "permissions": ["activeTab", "scripting", "contextMenus"],
+    "options_page": "options.html",
+    "action": {
         "default_popup": "popup.html"
     },
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {
@@ -18,6 +17,7 @@
             "js": ["content.js"]
         }
     ],
-    "options_page": "options.html",
-    "web_accessible_resources": ["content.js"]
+    "icons": {
+        "128": "icon.png"
+    }
 }
