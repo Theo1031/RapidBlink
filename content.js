@@ -1,11 +1,9 @@
-// content.js
+
 
 function spritzText(text, speed) {
     const words = text.split(/\s+/);
     let currentIndex = 0;
-    let wordSpeed = speed; // To keep track of the speed
-
-    // Create the backdrop for text display
+    let wordSpeed = speed;
     const backdrop = document.createElement('div');
     backdrop.style.position = 'fixed';
     backdrop.style.top = '0';
@@ -18,12 +16,12 @@ function spritzText(text, speed) {
     backdrop.style.justifyContent = 'center';
     backdrop.style.alignItems = 'center';
 
-    // Create the speed control bar
+ 
     const speedControl = document.createElement('input');
     speedControl.type = 'range';
     speedControl.max = '1000';
     speedControl.min = '100';
-    speedControl.value = '860'; // Set initial value for +50 faster speed
+    speedControl.value = '860'; 
     speedControl.style.position = 'absolute';
     speedControl.style.top = '20px';
     speedControl.style.left = '50%';
@@ -31,19 +29,16 @@ function spritzText(text, speed) {
     speedControl.style.zIndex = '1001';
 
     // Initial wordSpeed calculation
-    wordSpeed = 1100 - speedControl.value; // Calculate initial wordSpeed
+    wordSpeed = 1100 - speedControl.value; 
 
-    // Add the event listener for the speed control bar
     speedControl.addEventListener('input', function() {
-        wordSpeed = 1100 - speedControl.value; // Update wordSpeed on input
+        wordSpeed = 1100 - speedControl.value; 
     });
 
     backdrop.appendChild(speedControl);
 
 
-    
 
-    // Create the container for displaying words
     const spritzContainer = document.createElement('div');
     spritzContainer.style.fontSize = '40px';
     spritzContainer.style.color = 'black';
@@ -51,7 +46,7 @@ function spritzText(text, speed) {
     backdrop.appendChild(spritzContainer);
     document.body.appendChild(backdrop);
 
-    // Create the Patreon button
+    /*
     const patreonButton = document.createElement('button');
     patreonButton.textContent = 'Patreon';
     patreonButton.style.position = 'absolute';
@@ -61,14 +56,15 @@ function spritzText(text, speed) {
     patreonButton.style.fontSize = '20px';
     patreonButton.style.cursor = 'pointer';
 
-    // Add the event listener for the Patreon button
+
     patreonButton.addEventListener('click', function() {
         window.open('https://www.patreon.com/Tiggum274', '_blank');
     });
 
     backdrop.appendChild(patreonButton);
+    */
 
-    // Create the quit button
+
     const quitButton = document.createElement('button');
     quitButton.textContent = 'Quit';
     quitButton.style.position = 'absolute';
@@ -78,16 +74,14 @@ function spritzText(text, speed) {
     quitButton.style.fontSize = '20px';
     quitButton.style.cursor = 'pointer';
 
-    // Add the event listener for the quit button
     quitButton.addEventListener('click', function() {
         document.body.removeChild(backdrop);
-        clearTimeout(updateTimeout); // Clear the timeout to stop updating words
+        clearTimeout(updateTimeout); 
     });
 
     backdrop.appendChild(quitButton);
 
-    let updateTimeout; // To keep reference of the timeout
-    // Create the options button
+    let updateTimeout; n
     const optionsButton = document.createElement('button');
     optionsButton.textContent = 'Options';
     optionsButton.style.position = 'absolute';
@@ -97,13 +91,13 @@ function spritzText(text, speed) {
     optionsButton.style.fontSize = '20px';
     optionsButton.style.cursor = 'pointer';
 
-    // Initially hide the Patreon button and the speed control bar
+    
     patreonButton.style.display = 'none';
     speedControl.style.display = 'none';
 
-    // Add the event listener for the options button
+    
     optionsButton.addEventListener('click', function() {
-        // Toggle the visibility of the Patreon button and the speed control bar
+       
         if (patreonButton.style.display === 'none') {
             patreonButton.style.display = 'block';
             speedControl.style.display = 'block';
@@ -122,14 +116,14 @@ function spritzText(text, speed) {
             currentIndex++;
             updateTimeout = setTimeout(updateWord, wordSpeed);
         } else {
-            document.body.removeChild(backdrop); // Remove the backdrop after displaying all words
+            document.body.removeChild(backdrop); 
         }
     }
 
     updateWord();
 }
 
-// Listen for messages from the background script
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'startSpritz') {
         spritzText(message.text, 200);
